@@ -86,9 +86,6 @@ void main_loop(void) {
     }
 }
 ```
-
-**Note:** Bare-metal ISR + flag polling avoids RTOS overhead. Suitable for pulse rates well within the ADC's interrupt latency budget.
-
 ---
 
 ### 2. Signal Processing — Peak Detection & Dose Accumulation
@@ -130,7 +127,7 @@ void ble_start_scan(void) {
 
 **Roles supported:**
 - **Peripheral:** Dosimeter advertises and notifies dose data to connected hub
-- **Central:** Hub scans, connects, and reads data from 1–4 peripheral dosimeters
+- **Central:** Hub scans, connects, and reads data from 1–5 peripheral dosimeters
 
 ---
 
@@ -178,7 +175,7 @@ Resolved issues included incorrect characteristic handle references, connection 
 ## Calibration Procedure
 
 ```
-1. Expose sensor to known reference source (e.g., Cs-137 at known dose rate)
+1. Expose sensor to known reference source (Cs-137 at known dose rate)
 2. Record ADC pulse count over a fixed measurement window
 3. Compute: calibration_factor = known_dose_uSv / measured_pulse_count
 4. Store calibration_factor in non-volatile flash memory
